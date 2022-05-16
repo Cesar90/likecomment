@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+      <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+      <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+      <link rel="stylesheet" href="./tailwind/tailwind.css">
+      <link rel="stylesheet" href="css/style.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script>
+         jQuery(document).ready(function(){
+            const allComments = 'http://localhost:5000/api/comments'
+            const randonUser = 'http://localhost:5000/api/users/current'
+
+            const allCommentsRequest = axios.get(allComments);
+            const randonUserRequest = axios.get(randonUser);
+
+            axios
+               .all([allCommentsRequest, randonUserRequest])
+               .then(axios.spread((...responses) => {
+                  const responseOne = responses[0];
+                  const responseTwo = responses[1];
+
+                  // use/access the results
+                  console.log(responseOne, responseTwo);
+               })
+               )
+               .catch(errors => {
+                  // react on errors.
+                  console.error(errors);
+               });
+
+            
+         });
+      </script>
+      <title>Discussion</title>
+   </head>
+   <body>
+      <div class="container mx-auto bg-gray-50">
+         <div class="max-w-2xl mx-auto mt-12">
+            <div class="flex flex-wrap mt-12 ">
+              <div class="w-full">
+                <div class="flex flex-wrap mt-12">
+                  <h3 class="mb-6 text-2xl font-bold text-gray-900 ">Comments</h3>
+                </div>
+              </div>
+           </div>
+
+            <div class="flex flex-wrap mb-12">
+               <div class="w-full">
+                  <div class="py-2 px-4">
+                     <div class="flex space-x-2">
+                        <img src="https://monst-nextjs.vercel.app/assets/imgs/placeholders/avatar-6.png" alt="Profile picture" class="w-9 h-9 rounded-full">
+                        <input type="text" placeholder="What are you thoughts?" class="outline-none bg-transparent flex-1 dark:bg-dark-third ">
+                        <button class="transition duration-300 ease-in-out transform hover:-translate-y-1 block p-4 text-center text-xs text-white font-semibold leading-none bg-purple-500 hover:bg-purple-500 rounded ">Comment</button>
+                     </div>
+                  </div>
+
+                  <div class="py-2 px-4 mt-8">
+                     <div class="border border-gray-200 dark:border-dark-third border-l-0 border-r-0 border-t-0 py-1">
+                     </div>
+                  </div>
+
+                  <div class="py-2 px-4 mt-8 mb-12">
+                     <!-- COMMENT -->
+                     <div class="flex space-x-2">
+                        <img src="https://monst-nextjs.vercel.app/assets/imgs/placeholders/avatar-6.png" alt="Profile picture" class="w-9 h-9 rounded-full">
+                        <div>
+                           <div class=" p-2 rounded-2xl text-sm">
+                              <div class="flex">
+                                 <span class="font-semibold block">John Doe</span> 
+                                 <span class="pl-1 pr-1">∙</span>
+                                    10m
+                              </div>
+                              
+                              <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                           </div>
+                           <div class="p-2 text-xs text-gray-500 dark:text-dark-txt">
+                              <span class="font-semibold cursor-pointer">Like</span>
+                              <span>.</span>
+                              <span class="font-semibold cursor-pointer">Reply</span>
+                              
+                           </div>
+                           <!-- COMMENT -->
+                           <div class="flex space-x-2">
+                              <img src="https://monst-nextjs.vercel.app/assets/imgs/placeholders/avatar-6.png" alt="Profile picture" class="w-9 h-9 rounded-full">
+                              <div>
+                                 <div class=" p-2 rounded-2xl text-sm">
+                                    <div class="flex">
+                                       <span class="font-semibold block">John Doe</span> 
+                                       <span class="pl-1 pr-1">∙</span>
+                                          10m
+                                    </div>
+                                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                 </div>
+                                 <div class="p-2 text-xs text-gray-500 dark:text-dark-txt">
+                                    <span class="font-semibold cursor-pointer">Like</span>
+                                    <span>.</span>
+                                    <span class="font-semibold cursor-pointer">Reply</span>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- END COMMENT -->
+                        </div>
+                     </div>
+                     <!-- END COMMENT -->
+                     <!-- COMMENT -->
+                     <div class="flex space-x-2">
+                        <img src="https://monst-nextjs.vercel.app/assets/imgs/placeholders/avatar-6.png" alt="Profile picture" class="w-9 h-9 rounded-full">
+                        <div>
+                           <div class=" p-2 rounded-2xl text-sm">
+                              <div class="flex">
+                                 <span class="font-semibold block">John Doe</span> 
+                                 <span class="pl-1 pr-1">∙</span>
+                                    10m
+                              </div>
+                              <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. In voluptate ipsa animi corrupti unde, voluptatibus expedita suscipit, itaque, laudantium accusantium aspernatur officia repellendus nihil mollitia soluta distinctio praesentium nulla eos?</span>
+                           </div>
+                           <div class="p-2 text-xs text-gray-500 dark:text-dark-txt">
+                              <span class="font-semibold cursor-pointer">Like</span>
+                              <span>.</span>
+                              <span class="font-semibold cursor-pointer">Reply</span>
+                           </div>
+                           <div class="flex space-x-2">
+                              <img src="https://monst-nextjs.vercel.app/assets/imgs/placeholders/avatar-6.png" alt="Profile picture" class="w-9 h-9 rounded-full">
+                              <div>
+                                 <div class="p-2 rounded-2xl text-sm">
+                                    <div class="flex">
+                                       <span class="font-semibold block">John Doe</span> 
+                                       <span class="pl-1 pr-1">∙</span>
+                                          10m
+                                    </div>
+                                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                 </div>
+                                 <div class="p-2 text-xs text-gray-500 dark:text-dark-txt">
+                                    <span class="font-semibold cursor-pointer">Like</span>
+                                    <span>.</span>
+                                    <span class="font-semibold cursor-pointer">Reply</span>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+               </div>
+
+               
+
+            </div>
+            <!-- <div class="antialiased mx-auto max-w-screen-sm">
+               
+               <div class="space-y-4">
+                  <div class="flex">
+                     <div class="flex-shrink-0 mr-3"><img class="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10" src="https://monst-nextjs.vercel.app/assets/imgs/placeholders/avatar-6.png" alt="Monst"></div>
+                     <div class="flex-1 border border-gray-100 rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
+                        <strong>Kolawole</strong><span class="text-xs text-gray-400">3:34 PM</span>
+                        <p class="text-sm">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                        <div class="mt-4 flex items-center">
+                           <div class="flex -space-x-2 mr-2"><img class="rounded-full w-6 h-6 border border-white" src="https://monst-nextjs.vercel.app/assets/imgs/placeholders/avatar-6.png" alt="Monst"><img class="rounded-full w-6 h-6 border border-white" src="https://monst-nextjs.vercel.app/assets/imgs/placeholders/avatar-6.png" alt="Monst"></div>
+                           <div class="text-sm text-gray-500 font-semibold">5 Replies</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="flex">
+                     <div class="flex-shrink-0 mr-3"><img class="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10" src="https://monst-nextjs.vercel.app/assets/imgs/placeholders/avatar-6.png" alt="Monst"></div>
+                     <div class="flex-1 border border-gray-100 rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
+                        <strong>Fulton</strong><span class="text-xs text-gray-400">3:34 PM</span>
+                        <p class="text-sm">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                        <h4 class="my-5 uppercase tracking-wide text-gray-400 font-bold text-xs">Replies</h4>
+                        <div class="space-y-4">
+                           <div class="flex">
+                              <div class="flex-shrink-0 mr-3"><img class="mt-3 rounded-full w-6 h-6 sm:w-8 sm:h-8" src="https://monst-nextjs.vercel.app/assets/imgs/placeholders/avatar-6.png" alt="Monst"></div>
+                              <div class="flex-1 bg-gray-50 rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
+                                 <strong>Clara </strong><span class="text-xs text-gray-400">3:34 PM</span>
+                                 <p class="text-xs sm:text-sm">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                              </div>
+                           </div>
+                           <div class="flex">
+                              <div class="flex-shrink-0 mr-3"><img class="mt-3 rounded-full w-6 h-6 sm:w-8 sm:h-8" src="https://monst-nextjs.vercel.app/assets/imgs/placeholders/avatar-6.png" alt="Monst"></div>
+                              <div class="flex-1 bg-gray-50 rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
+                                 <strong>Dany </strong><span class="text-xs text-gray-400">3:34 PM</span>
+                                 <p class="text-xs sm:text-sm">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div> -->
+            <!-- <div class="mb-4 mt-12">
+               <form class="w-full max-w-xl bg-white rounded-lg">
+                  <div class="flex flex-wrap mb-6">
+                     <h2 class="pt-3 pb-2 text-gray-800 text-lg font-bold">Add a new comment</h2>
+                     <div class="w-full md:w-full mb-2 mt-2"><textarea class="bg-gray-100 rounded border border-gray-100 leading-normal resize-none w-full h-32 py-4 px-3 focus:outline-none focus:bg-white text-sm" name="body" placeholder="Type Your Comment" required=""></textarea></div>
+                     <div class="w-full md:w-full flex items-start md:w-full px-1">
+                        <div class="flex items-start w-1/2 text-gray-700 px-2 mr-auto">
+                           <svg fill="none" class="w-5 h-5 text-gray-600 mr-1" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                           </svg>
+                           <p class="text-xs md:text-xs pt-px">Some HTML is okay.</p>
+                        </div>
+                     </div>
+                     <button class="transition duration-300 ease-in-out transform hover:-translate-y-1 block p-4 text-center text-xs text-white font-semibold leading-none bg-blue-500 hover:bg-blue-700 rounded mt-6">Post Comment</button>
+                  </div>
+               </form>
+            </div>
+            <div class="transition duration-300 ease-in-out transform hover:-translate-y-1 flex items-center justify-center mt-12"><a class="px-4 py-2 mt-2 text-gray-600 transition-colors duration-200 transform border border-gray-100 rounded-lg dark:text-gray-200 dark:border-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none" href="/blog"> Read More Articles </a></div> -->
+         </div>
+      </div>
+   </body>
+</html>
